@@ -7,61 +7,15 @@
     <link rel="stylesheet" href="static/css/main.css">
   </head>
   <body>
-    <div class="container">
-      <object id="svg-object" type="image/svg+xml" data="static/img/final_tree_line_svg_opt.svg" class="svg-img">
-        Apollo
+    <div class="container full-width full-viewport-height">
+      <object id="svg-object" type="image/svg+xml" data="static/img/final_tree_line_svg_opt.svg" class="svg-img full-viewport-height">
+        SVG Path
       </object>
     </div>
     <main>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
+      <!-- The section's height for this example is 6 times the viewport height to provide space for scrolling. -->
       <section></section>
     </main>
-
-    <script type="text/javascript">
-      let svgObject, path, pathLength;
-      window.addEventListener("load", function() {
-        svgObject = document.getElementById('svg-object').contentDocument;
-        path = svgObject.querySelector('path');
-        pathLength = path.getTotalLength();
-
-        // SVG line
-        path.style.strokeDasharray = pathLength + ' ' + pathLength;
-        path.style.strokeDashoffset = pathLength;
-      });
-
-      window.addEventListener("scroll", event => {
-          // Parallax
-          const target = document.querySelectorAll('.scroll');
-
-          var index = 0, length = target.length;
-          for (index; index < length; index++) {
-            var pos = window.pageYOffset * target[index].dataset.rate;
-
-            if (target[index].dataset.direction === 'vertical') {
-              target[index].style.transform = 'translate3d(0px, '+pos+'px, 0px)';
-            } else {
-              var posX = window.pageYOffset * target[index].dataset.ratex;
-              var posY = window.pageYOffset * target[index].dataset.ratey;
-
-              target[index].style.transform = 'translate3d('+posX+'px, '+posY+'px, 0px)';
-            }
-          }
-
-          // Get the percentage based on current scroll
-          var scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
-
-          // Length to offset the dashes
-          var drawLength = pathLength * scrollPercentage;
-
-          // Draw in reverse
-          path.style.strokeDashoffset = pathLength - drawLength;
-        });
-    </script>
+    <script type="text/javascript" src="static/js/draw_svg.js"></script>
   </body>
 </html>
