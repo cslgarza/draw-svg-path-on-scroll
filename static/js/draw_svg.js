@@ -3,7 +3,8 @@
  */
 
 /**
- * Hide the 
+ * Hide the svg path with a stroke dasharray and offset.
+ * @param {string} The HTML id of the svg object containing the path.
  */
 function hideSvgPath(svgObjectId) {
   path = getSvgPath(document.getElementById(svgObjectId).contentDocument)
@@ -14,15 +15,14 @@ function hideSvgPath(svgObjectId) {
   path.style.strokeDashoffset = pathLength;
 }
 
-/* 
+/*
  * Add an event listener to the SVG path updates the stroke dash offset to either reveal or hide the SVG path 
  * depending on the current scrolled amount.
  */
 function updateShownPath() {
-  // Get the percentage based on current scroll
-  let scrollPercentage = getScrollPercentage();
   // Length to offset the dashes
-  let drawLength = pathLength * scrollPercentage;
+  let drawLength = pathLength * getScrollPercentage();
+
   // Draw in reverse
   path.style.strokeDashoffset = pathLength - drawLength;
 }
