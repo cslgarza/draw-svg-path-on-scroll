@@ -17,6 +17,7 @@ section {
 
 .svg-img {
     width: 500px;
+    display: none;
 }
 
 /* Utilities */
