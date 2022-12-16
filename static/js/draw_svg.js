@@ -15,9 +15,10 @@ function hideSvgPath(svgObjectId) {
   path.style.strokeDashoffset = pathLength;
 }
 
-/*
- * Add an event listener to the SVG path updates the stroke dash offset to either reveal or hide the SVG path 
+/**
+ * Updates the stroke dash offset to either reveal or hide the SVG path 
  * depending on the current scrolled amount.
+ * @param {string} The HTML id of the svg object container the path.
  */
 function updateShownPath(svgObjectId) {
   let path = getSvgPath(document.getElementById(svgObjectId).contentDocument)
