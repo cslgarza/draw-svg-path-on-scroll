@@ -17,5 +17,22 @@
       <section></section>
     </main>
     <script type="text/javascript" src="static/js/draw_svg.js"></script>
+    <script type="text/javascript">
+      let path, pathLength;
+
+      // Hide the SVG path when the page loads.
+      window.addEventListener("load", function() {
+        document.getElementByClassName("svg-img").style.display = "inline-block";
+        hideSvgPath("svg-object");
+      });
+
+      /* 
+      * Add an event listener to the SVG path updates the stroke dash offset to either reveal or hide the SVG path 
+      * depending on the current scrolled amount.
+      */
+      window.addEventListener("scroll", event => {
+        updateShownPath();
+      });
+    </script>
   </body>
 </html>

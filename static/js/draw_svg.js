@@ -2,30 +2,30 @@
  * @fileoverview Code for revealing an SVG path based on current scroll.
  */
 
-let path, pathLength;
-
-// Hide the SVG path when the page loads.
-window.addEventListener("load", function() {
-  path = getSvgPath(document.getElementById('svg-object').contentDocument)
+/**
+ * Hide the svg path with a stroke dasharray and offset.
+ * @param {string} The HTML id of the svg object containing the path.
+ */
+function hideSvgPath(svgObjectId) {
+  path = getSvgPath(document.getElementById(svgObjectId).contentDocument)
   pathLength = path.getTotalLength();
 
-// Hide the SVG line
+  // Hide the SVG line
   path.style.strokeDasharray = pathLength + ' ' + pathLength;
   path.style.strokeDashoffset = pathLength;
-});
+}
 
-/* 
+/*
  * Add an event listener to the SVG path updates the stroke dash offset to either reveal or hide the SVG path 
  * depending on the current scrolled amount.
  */
-window.addEventListener("scroll", event => {
-  // Get the percentage based on current scroll
-  let scrollPercentage = getScrollPercentage();
+function updateShownPath() {
   // Length to offset the dashes
-  let drawLength = pathLength * scrollPercentage;
+  let drawLength = pathLength * getScrollPercentage();
+
   // Draw in reverse
   path.style.strokeDashoffset = pathLength - drawLength;
-});
+}
 
 /**
  * Get the PATH element of the SVG object.
